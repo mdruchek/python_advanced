@@ -38,7 +38,12 @@ import sys
 
 
 def decrypt(encryption: str) -> str:
-    ...
+    decoding: str = ''
+    index = encryption.find('..')
+    while index:
+        encryption = encryption[:index - 1] + encryption[index + 2:]
+        index = encryption.find('..')
+    return encryption
 
 
 if __name__ == '__main__':

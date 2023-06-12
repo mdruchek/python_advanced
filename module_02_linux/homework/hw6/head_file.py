@@ -30,13 +30,19 @@ hello world!
 """
 
 from flask import Flask
+import os
 
 app = Flask(__name__)
+BASEDIR = os.path.dirname(os.path.abspath(__file__))
 
 
 @app.route("/head_file/<int:size>/<path:relative_path>")
 def head_file(size: int, relative_path: str):
-    ...
+    abs_path = os.path.abspath(relative_path)
+    file_size = os.path.getsize(relative_path)
+    with open(relative_path, 'r') as file:
+        head_file_str = file.read(size)
+    return f'{abs_path} {file_size}<br>{head_file_str}'
 
 
 if __name__ == "__main__":
