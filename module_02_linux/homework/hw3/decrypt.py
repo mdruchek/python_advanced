@@ -38,10 +38,26 @@ import sys
 
 
 def decrypt(encryption: str) -> str:
-    ...
+    find_symbol = ('..', '.')
+    for symbol in find_symbol:
+        position = encryption.find(symbol)
+        while position != -1:
+            if symbol == '..':
+                if position != 0:
+                    encryption = f'{encryption[:position - 1]}{encryption[position + 2:]}'
+                else:
+                    encryption = encryption[position + 2:]
+            if symbol == '.' and position != 1:
+                if position != 0:
+                    encryption = f'{encryption[:position]}{encryption[position + 1:]}'
+                else:
+                    encryption = encryption[position + 1:]
+            position = encryption.find(symbol)
+    return encryption
 
 
 if __name__ == '__main__':
+    sys.stdin.reconfigure(encoding='utf-8')
     data: str = sys.stdin.read()
     decryption: str = decrypt(data)
     print(decryption)
