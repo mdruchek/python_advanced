@@ -21,22 +21,10 @@ def get_summary_rss(ps_output_file_path: str) -> str:
     for line in lines:
         columns: list = line.split()
         summary_rss += int(columns[5])
-    remainder: float = summary_rss / 10
-    units_measurement: list[str] = ['кБ', 'МБ', 'ГБ']
-    numbers_digit: int = 1
-    if remainder > 10:
-        while remainder > 1:
-            remainder /= 10
-            numbers_digit += 1
-    if numbers_digit > 6:
-        unit_measurement: str = units_measurement[2]
-        summary_rss /= 10 ** 6
-    elif 3 < numbers_digit <= 6:
-        unit_measurement: str = units_measurement[1]
-        summary_rss /= 10 ** 3
-    else:
-        unit_measurement: str = units_measurement[0]
-    return f'{summary_rss} {unit_measurement}'
+    number_digits = len(str(summary_rss))
+    for degree, dimension in ((6, 'ГБ'), (3, 'МБ'), (0, 'кБ')):
+        if number_digits > degree:
+            return f'{summary_rss / 10 ** degree} {dimension}'
 
 
 if __name__ == '__main__':
