@@ -38,20 +38,10 @@ import sys
 
 
 def decrypt(encryption: str) -> str:
-    find_symbol = ('..', '.')
-    for symbol in find_symbol:
+        for symbol in ('..', '.'):
         position = encryption.find(symbol)
         while position != -1:
-            if symbol == '..':
-                if position != 0:
-                    encryption = f'{encryption[:position - 1]}{encryption[position + 2:]}'
-                else:
-                    encryption = encryption[position + 2:]
-            if symbol == '.' and position != 1:
-                if position != 0:
-                    encryption = f'{encryption[:position]}{encryption[position + 1:]}'
-                else:
-                    encryption = encryption[position + 1:]
+            encryption = f'{encryption[:position + (1-len(symbol))]}{encryption[position + len(symbol):]}'
             position = encryption.find(symbol)
     return encryption
 
