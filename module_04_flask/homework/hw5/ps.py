@@ -9,13 +9,19 @@
 """
 
 from flask import Flask
+import shlex
+import subprocess
 
 app = Flask(__name__)
 
 
 @app.route("/ps", methods=["GET"])
 def ps() -> str:
-    ...
+    command_str = f'ps'
+    command = shlex.split(command_str)
+    result = subprocess.run(command)
+    print(result)
+    return 'ps'
 
 
 if __name__ == "__main__":
