@@ -11,7 +11,8 @@
 она должна найти процесс по этому порту, завершить его и попытаться запустить сервер ещё раз.
 """
 from typing import List
-
+import subprocess
+import shlex
 from flask import Flask
 
 app = Flask(__name__)
@@ -27,7 +28,10 @@ def get_pids(port: int) -> List[int]:
         raise ValueError
 
     pids: List[int] = []
-    ...
+    command = shlex.split('lsof -i :5000')
+    print(command)
+    pids = subprocess.Popen(command, text=True)
+    print(pids)
     return pids
 
 
