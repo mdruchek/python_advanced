@@ -34,14 +34,14 @@ def get_pids(port: int) -> List[int]:
 
     command = shlex.split('lsof -i :5000')
 
-    proc = subprocess.run(
+    proc = subprocess.Popen(
         command,
         text=True,
         stdout=PIPE,
         stderr=PIPE
     )
 
-    pids = [int(proc_info.split()[1]) for proc_info in proc.stdout.split('\n')[1:] if proc_info]
+    pids = [int(proc_info.split()[1]) for proc_info in proc.stdout.read().split('\n')[1:] if proc_info]
     return pids
 
 
@@ -53,12 +53,6 @@ def free_port(port: int) -> None:
     pids: List[int] = get_pids(port)
     for pid in pids:
         kill(pid, SIGKILL)
-        while True:
-            try:
-                kill(pid, 0)
-            except OSError:
-                break
-
 
 
 def run(port: int) -> None:

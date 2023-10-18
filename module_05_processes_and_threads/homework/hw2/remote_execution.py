@@ -7,7 +7,8 @@
 
 import os
 from subprocess import Popen, PIPE, TimeoutExpired
-from time import time
+import shlex
+from shlex import quote
 from typing import Tuple
 
 from flask import Flask
@@ -24,17 +25,18 @@ class CodeForm(FlaskForm):
 
 
 def run_python_code_in_subprocess(code: str, timeout: int) -> Tuple:
-    start = time()
-    cmd = f'prlimit --nproc=1:1 python -c "{code}"'
-    proc = Popen(cmd, shell=True, stdout=PIPE, stderr=PIPE, stdin=PIPE,  text=True)
+    safe_code = shlex.quote(code)
+    cmd = shlex.split(f"prlimit --nproc=1:1 python -c {safe_code}")
+    proc = Popen(cmd, stdout=PIPE, stderr=PIPE, stdin=PIPE,  text=True)
+    proc_kill = False
     try:
-        outs, errs = proc.communicate(timeout=timeout, input=f'Исполнение кода не уложилось в {timeout}сек.')
+        outs, errs = proc.communicate(timeout=timeout)
     except TimeoutExpired:
         proc.kill()
         outs, errs = proc.communicate()
-        outs = f'<h1>Исполнение кода не уложилось в {timeout}сек.</h1>' + outs
+        proc_kill = True
 
-    return outs, errs
+    return outs, errs, proc_kill
 
 
 @app.route('/run_code', methods=['POST'])
@@ -42,7 +44,9 @@ def run_code():
     form = CodeForm()
     if form.validate_on_submit():
         code, timeout = form.code.data, form.timeout.data
-        outs, errs = run_python_code_in_subprocess(code, timeout)
+        outs, errs, proc_kill = run_python_code_in_subprocess(code, timeout)
+        if proc_kill:
+            return f'Исполнение кода не уложилось в {timeout}сек.'
         return f'Вывод:<br>{outs}<br><br>Ошибки:<br>{errs}'
     return f"Invalid input, {form.errors}", 400
 

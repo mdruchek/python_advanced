@@ -7,4 +7,6 @@ result = 0
 for n in range(1, 11):
     result += n ** 2
 
-# Secret magic code
+if __name__ == '__main__':
+    with open(__file__, 'r', encoding='utf-8') as file:
+        print(file.read())

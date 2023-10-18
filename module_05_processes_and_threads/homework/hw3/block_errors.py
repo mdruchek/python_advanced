@@ -8,8 +8,8 @@ from types import TracebackType
 
 
 class BlockErrors:
-    def __init__(self, errors: Collection) -> None:
-        ...
+    def __init__(self, errors: ([])) -> None:
+        self.errors = errors
 
     def __enter__(self) -> None:
         ...
@@ -20,4 +20,9 @@ class BlockErrors:
             exc_val: BaseException | None,
             exc_tb: TracebackType | None
     ) -> Literal[True] | None:
-        ...
+
+        try:
+            if issubclass(exc_type, self.errors):
+                return True
+        except TypeError:
+            pass
