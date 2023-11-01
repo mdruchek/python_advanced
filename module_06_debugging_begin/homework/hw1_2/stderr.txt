@@ -1,0 +1,284 @@
+15:05:15 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+15:05:15 - password_checker - INFO - У вас есть 3 попыток
+15:05:16 - password_checker - WARNING - Вы ввели слишком слабый пароль
+15:05:17 - password_checker - WARNING - Вы ввели слишком слабый пароль
+15:05:18 - password_checker - WARNING - Вы ввели слишком слабый пароль
+15:05:18 - password_checker - ERROR - Пользователь трижды ввёл не правильный пароль!
+12:38:39 - password_checker - INFO - Чтание файла words
+12:39:09 - password_checker - INFO - Чтание файла words
+12:39:09 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+12:39:09 - password_checker - INFO - У вас есть 3 попыток
+12:39:36 - password_checker - WARNING - Вы ввели слишком слабый пароль
+12:42:57 - password_checker - INFO - Чтание файла words
+12:42:57 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+12:42:57 - password_checker - INFO - У вас есть 3 попыток
+12:43:23 - password_checker - WARNING - Вы ввели слишком слабый пароль
+12:44:45 - password_checker - INFO - Чтание файла words
+12:44:45 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+12:44:45 - password_checker - INFO - У вас есть 3 попыток
+12:44:48 - password_checker - WARNING - Вы ввели слишком слабый пароль
+12:45:41 - password_checker - INFO - Чтание файла words
+12:45:41 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+12:45:41 - password_checker - INFO - У вас есть 3 попыток
+12:45:43 - password_checker - WARNING - Вы ввели слишком слабый пароль
+12:48:54 - password_checker - INFO - Чтание файла words
+12:48:54 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+12:48:54 - password_checker - INFO - У вас есть 3 попыток
+12:48:55 - password_checker - WARNING - Вы ввели слишком слабый пароль
+12:49:14 - password_checker - INFO - Чтание файла words
+12:49:14 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+12:49:14 - password_checker - INFO - У вас есть 3 попыток
+12:49:16 - password_checker - WARNING - Вы ввели слишком слабый пароль
+12:50:35 - password_checker - INFO - Чтание файла words
+12:50:35 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+12:50:35 - password_checker - INFO - У вас есть 3 попыток
+12:50:36 - password_checker - WARNING - Вы ввели слишком слабый пароль
+12:50:57 - password_checker - INFO - Чтание файла words
+12:50:58 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+12:50:58 - password_checker - INFO - У вас есть 3 попыток
+12:51:34 - password_checker - INFO - Чтание файла words
+12:51:35 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+12:51:35 - password_checker - INFO - У вас есть 3 попыток
+12:52:23 - password_checker - INFO - Чтание файла words
+12:52:23 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+12:52:23 - password_checker - INFO - У вас есть 3 попыток
+12:52:40 - password_checker - WARNING - Вы ввели слишком слабый пароль
+12:53:20 - password_checker - WARNING - Вы ввели слишком слабый пароль
+12:53:24 - password_checker - WARNING - Вы ввели пустой пароль.
+12:53:24 - password_checker - ERROR - Пользователь трижды ввёл не правильный пароль!
+12:56:52 - password_checker - INFO - Чтание файла words
+12:56:52 - password_checker - INFO - Запись слов в массив
+12:56:52 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+12:56:52 - password_checker - INFO - У вас есть 3 попыток
+12:56:54 - password_checker - WARNING - Вы ввели слишком слабый пароль
+12:57:00 - password_checker - WARNING - Вы ввели слишком слабый пароль
+13:04:51 - password_checker - INFO - Чтание файла words
+13:04:51 - password_checker - INFO - Запись слов в массив
+13:04:51 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+13:04:51 - password_checker - INFO - У вас есть 3 попыток
+13:04:59 - password_checker - INFO - Чтание файла words
+13:04:59 - password_checker - INFO - Запись слов в массив
+13:04:59 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+13:04:59 - password_checker - INFO - У вас есть 3 попыток
+13:05:02 - password_checker - WARNING - Вы ввели слишком слабый пароль
+13:17:26 - password_checker - INFO - Чтание файла words
+13:17:26 - password_checker - INFO - Запись слов в массив
+13:17:26 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+13:17:26 - password_checker - INFO - У вас есть 3 попыток
+13:17:28 - password_checker - WARNING - Вы ввели слишком слабый пароль
+13:17:58 - password_checker - WARNING - Вы ввели слишком слабый пароль
+13:18:54 - password_checker - INFO - Чтание файла words
+13:18:54 - password_checker - INFO - Запись слов в массив
+13:18:54 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+13:18:54 - password_checker - INFO - У вас есть 3 попыток
+13:18:59 - password_checker - WARNING - Вы ввели слишком слабый пароль
+13:19:36 - password_checker - WARNING - Вы ввели слишком слабый пароль
+13:25:39 - password_checker - INFO - Чтание файла words
+13:25:39 - password_checker - INFO - Запись слов в массив
+13:25:39 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+13:25:39 - password_checker - INFO - У вас есть 3 попыток
+13:25:43 - password_checker - WARNING - Вы ввели слишком слабый пароль
+13:25:50 - password_checker - WARNING - Вы ввели слишком слабый пароль
+13:26:15 - password_checker - INFO - Чтание файла words
+13:26:15 - password_checker - INFO - Запись слов в массив
+13:26:15 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+13:26:15 - password_checker - INFO - У вас есть 3 попыток
+13:26:18 - password_checker - WARNING - Вы ввели слишком слабый пароль
+13:26:49 - password_checker - WARNING - Вы ввели слишком слабый пароль
+14:54:59 - password_checker - INFO - Чтание файла words
+14:54:59 - password_checker - INFO - Запись слов в массив
+14:54:59 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+14:54:59 - password_checker - INFO - У вас есть 3 попыток
+14:55:02 - password_checker - WARNING - Вы ввели слишком слабый пароль
+14:56:21 - password_checker - WARNING - Вы ввели слишком слабый пароль
+14:56:22 - password_checker - WARNING - Вы ввели пустой пароль.
+14:56:22 - password_checker - ERROR - Пользователь трижды ввёл не правильный пароль!
+14:56:27 - password_checker - INFO - Чтание файла words
+14:56:27 - password_checker - INFO - Запись слов в массив
+14:56:27 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+14:56:27 - password_checker - INFO - У вас есть 3 попыток
+14:56:29 - password_checker - WARNING - Вы ввели слишком слабый пароль
+14:56:49 - password_checker - WARNING - Вы ввели слишком слабый пароль
+14:57:05 - password_checker - WARNING - Вы ввели слишком слабый пароль
+14:57:05 - password_checker - ERROR - Пользователь трижды ввёл не правильный пароль!
+14:58:04 - password_checker - INFO - Чтание файла words
+14:58:04 - password_checker - INFO - Запись слов в массив
+14:58:04 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+14:58:04 - password_checker - INFO - У вас есть 3 попыток
+14:58:07 - password_checker - WARNING - Вы ввели слишком слабый пароль
+14:58:12 - password_checker - WARNING - Вы ввели слишком слабый пароль
+14:59:49 - password_checker - INFO - Чтание файла words
+14:59:49 - password_checker - INFO - Запись слов в массив
+14:59:49 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+14:59:49 - password_checker - INFO - У вас есть 3 попыток
+14:59:52 - password_checker - WARNING - Вы ввели слишком слабый пароль
+15:07:11 - password_checker - INFO - Чтание файла words
+15:07:11 - password_checker - INFO - Запись слов в массив
+15:07:11 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+15:07:11 - password_checker - INFO - У вас есть 3 попыток
+15:07:38 - password_checker - INFO - Чтание файла words
+15:07:38 - password_checker - INFO - Запись слов в массив
+15:07:38 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+15:07:38 - password_checker - INFO - У вас есть 3 попыток
+15:07:42 - password_checker - WARNING - Вы ввели слишком слабый пароль
+15:07:59 - password_checker - INFO - Чтание файла words
+15:07:59 - password_checker - INFO - Запись слов в массив
+15:07:59 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+15:07:59 - password_checker - INFO - У вас есть 3 попыток
+15:08:03 - password_checker - WARNING - Вы ввели слишком слабый пароль
+15:13:27 - password_checker - INFO - Чтание файла words
+15:13:27 - password_checker - INFO - Запись слов в массив
+15:13:27 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+15:13:27 - password_checker - INFO - У вас есть 3 попыток
+15:13:32 - password_checker - WARNING - Вы ввели слишком слабый пароль
+15:14:50 - password_checker - INFO - Чтание файла words
+15:14:50 - password_checker - INFO - Запись слов в массив
+15:14:50 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+15:14:50 - password_checker - INFO - У вас есть 3 попыток
+15:14:54 - password_checker - WARNING - Вы ввели слишком слабый пароль
+15:15:17 - password_checker - WARNING - Вы ввели слишком слабый пароль
+15:17:02 - password_checker - INFO - Чтание файла words
+15:17:02 - password_checker - INFO - Запись слов в массив
+15:17:02 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+15:17:02 - password_checker - INFO - У вас есть 3 попыток
+15:17:11 - password_checker - WARNING - Вы ввели слишком слабый пароль
+15:17:43 - password_checker - INFO - Чтание файла words
+15:17:43 - password_checker - INFO - Запись слов в массив
+15:17:43 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+15:17:43 - password_checker - INFO - У вас есть 3 попыток
+15:17:59 - password_checker - WARNING - Вы ввели слишком слабый пароль
+15:23:54 - password_checker - INFO - Чтание файла words
+15:23:54 - password_checker - INFO - Запись слов в массив
+15:23:54 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+15:23:54 - password_checker - INFO - У вас есть 3 попыток
+15:24:09 - password_checker - INFO - Чтание файла words
+15:24:09 - password_checker - INFO - Запись слов в массив
+15:24:09 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+15:24:09 - password_checker - INFO - У вас есть 3 попыток
+15:24:20 - password_checker - WARNING - Вы ввели слишком слабый пароль
+07:39:00 - password_checker - WARNING - Вы ввели слишком слабый пароль
+07:39:03 - password_checker - WARNING - Вы ввели пустой пароль.
+07:39:03 - password_checker - ERROR - Пользователь трижды ввёл не правильный пароль!
+07:39:06 - password_checker - INFO - Чтание файла words
+07:39:07 - password_checker - INFO - Запись слов в массив
+07:39:07 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+07:39:07 - password_checker - INFO - У вас есть 3 попыток
+07:39:13 - password_checker - INFO - Извлечение всех слов из пароля
+07:39:13 - password_checker - WARNING - Вы ввели слишком слабый пароль
+07:39:23 - password_checker - INFO - Извлечение всех слов из пароля
+07:39:23 - password_checker - WARNING - Вы ввели слишком слабый пароль
+07:39:27 - password_checker - WARNING - Вы ввели пустой пароль.
+07:39:27 - password_checker - ERROR - Пользователь трижды ввёл не правильный пароль!
+07:39:30 - password_checker - INFO - Чтание файла words
+07:39:30 - password_checker - INFO - Запись слов в массив
+07:39:30 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+07:39:30 - password_checker - INFO - У вас есть 3 попыток
+07:39:39 - password_checker - INFO - Извлечение всех слов из пароля
+07:39:39 - password_checker - WARNING - Вы ввели слишком слабый пароль
+07:50:46 - password_checker - INFO - Извлечение всех слов из пароля
+07:50:46 - password_checker - WARNING - Вы ввели слишком слабый пароль
+07:51:32 - password_checker - INFO - Чтание файла words
+07:51:32 - password_checker - INFO - Запись слов в массив
+07:51:32 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+07:51:32 - password_checker - INFO - У вас есть 3 попыток
+07:51:35 - password_checker - INFO - Извлечение всех слов из пароля
+07:51:35 - password_checker - WARNING - Вы ввели слишком слабый пароль
+07:51:51 - password_checker - INFO - Извлечение всех слов из пароля
+07:51:51 - password_checker - WARNING - Вы ввели слишком слабый пароль
+07:58:32 - password_checker - INFO - Чтание файла words
+07:58:32 - password_checker - INFO - Запись слов в массив
+07:58:32 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+07:58:32 - password_checker - INFO - У вас есть 3 попыток
+07:58:44 - password_checker - INFO - Извлечение всех слов из пароля
+07:58:44 - password_checker - WARNING - Вы ввели слишком слабый пароль
+08:00:32 - password_checker - INFO - Извлечение всех слов из пароля
+08:00:32 - password_checker - WARNING - Вы ввели слишком слабый пароль
+08:01:27 - password_checker - INFO - Извлечение всех слов из пароля
+08:01:27 - password_checker - WARNING - Вы ввели слишком слабый пароль
+08:01:27 - password_checker - ERROR - Пользователь трижды ввёл не правильный пароль!
+08:01:41 - password_checker - INFO - Чтание файла words
+08:01:41 - password_checker - INFO - Запись слов в массив
+08:01:41 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+08:01:41 - password_checker - INFO - У вас есть 3 попыток
+08:03:03 - password_checker - INFO - Извлечение всех слов из пароля
+08:03:03 - password_checker - WARNING - Вы ввели слишком слабый пароль
+08:03:15 - password_checker - INFO - Извлечение всех слов из пароля
+08:03:15 - password_checker - INFO - Найдено слово в списке слов
+08:03:26 - password_checker - INFO - Извлечение всех слов из пароля
+08:03:26 - password_checker - WARNING - Вы ввели слишком слабый пароль
+08:03:26 - password_checker - ERROR - Пользователь трижды ввёл не правильный пароль!
+08:07:23 - password_checker - INFO - Чтание файла words
+08:07:23 - password_checker - INFO - Запись слов в массив
+08:07:23 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+08:07:23 - password_checker - INFO - У вас есть 3 попыток
+08:07:28 - password_checker - INFO - Извлечение всех слов из пароля
+08:07:28 - password_checker - WARNING - Вы ввели слишком слабый пароль
+08:07:39 - password_checker - WARNING - Вы ввели пустой пароль.
+08:07:50 - password_checker - INFO - Извлечение всех слов из пароля
+08:07:50 - password_checker - INFO - Найдено слово в списке слов
+08:07:50 - password_checker - ERROR - Пользователь трижды ввёл не правильный пароль!
+08:09:17 - password_checker - INFO - Чтание файла words
+08:09:17 - password_checker - INFO - Запись слов в массив
+08:09:17 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+08:09:17 - password_checker - INFO - У вас есть 3 попыток
+08:09:19 - password_checker - INFO - Извлечение всех слов из пароля
+08:09:47 - password_checker - INFO - Извлечение всех слов из пароля
+08:09:47 - password_checker - INFO - Найдено слово в списке слов
+08:09:47 - password_checker - WARNING - Вы ввели слишком слабый пароль
+08:09:56 - password_checker - INFO - Извлечение всех слов из пароляй
+08:09:56 - password_checker - ERROR - Пользователь трижды ввёл не правильный пароль!
+08:11:46 - password_checker - INFO - Чтание файла words
+08:11:46 - password_checker - INFO - Запись слов в массив
+08:11:46 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+08:11:46 - password_checker - INFO - У вас есть 3 попыток
+08:11:53 - password_checker - INFO - Извлечение всех слов из пароля
+08:11:53 - password_checker - ERROR - Вы ввели некорректный символ 
+Traceback (most recent call last):
+  File "F:\PycharmProjects\python_advanced-master\module_06_debugging_begin\homework\hw1_2\authentication.py", line 65, in input_and_check_password
+    hasher.update(password.encode("latin-1"))
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'latin-1' codec can't encode character '\u0439' in position 0: ordinal not in range(256)
+08:12:10 - password_checker - INFO - Извлечение всех слов из пароля
+08:12:10 - password_checker - ERROR - Вы ввели некорректный символ 
+Traceback (most recent call last):
+  File "F:\PycharmProjects\python_advanced-master\module_06_debugging_begin\homework\hw1_2\authentication.py", line 65, in input_and_check_password
+    hasher.update(password.encode("latin-1"))
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'latin-1' codec can't encode character '\u0439' in position 0: ordinal not in range(256)
+08:12:26 - password_checker - INFO - Извлечение всех слов из пароля
+08:12:26 - password_checker - INFO - Пароль не верный
+08:12:26 - password_checker - ERROR - Пользователь трижды ввёл не правильный пароль!
+08:13:44 - password_checker - INFO - Чтание файла words
+08:13:44 - password_checker - INFO - Запись слов в массив
+08:13:44 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+08:13:44 - password_checker - INFO - У вас есть 3 попыток
+08:13:51 - password_checker - INFO - Извлечение всех слов из пароля
+08:13:51 - password_checker - INFO - Найдено слово в списке слов
+08:13:51 - password_checker - WARNING - Вы ввели слишком слабый пароль
+08:14:08 - password_checker - INFO - Извлечение всех слов из пароля
+08:14:08 - password_checker - INFO - Пароль не верный
+08:14:30 - password_checker - INFO - Чтание файла words
+08:14:30 - password_checker - INFO - Запись слов в массив
+08:14:30 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+08:14:30 - password_checker - INFO - У вас есть 3 попыток
+08:14:34 - password_checker - INFO - Извлечение всех слов из пароля
+08:14:34 - password_checker - INFO - Найдено слово в списке слов
+08:14:34 - password_checker - WARNING - Вы ввели слишком слабый пароль
+08:14:44 - password_checker - INFO - Извлечение всех слов из пароля
+08:14:44 - password_checker - INFO - Найдено слово в списке слов
+08:14:44 - password_checker - WARNING - Вы ввели слишком слабый пароль
+08:14:52 - password_checker - INFO - Извлечение всех слов из пароля
+08:14:52 - password_checker - INFO - Пароль не верный
+08:14:52 - password_checker - ERROR - Пользователь трижды ввёл не правильный пароль!
+19:49:17 - password_checker - INFO - Чтание файла words
+19:49:17 - password_checker - INFO - Запись слов в массив
+19:49:17 - password_checker - INFO - Вы пытаетесь аутентифицироваться в Skillbox
+19:49:17 - password_checker - INFO - У вас есть 3 попыток
+19:49:20 - password_checker - INFO - Извлечение всех слов из пароля
+19:49:20 - password_checker - INFO - Пароль не верный
+19:49:26 - password_checker - INFO - Извлечение всех слов из пароля
+19:49:26 - password_checker - INFO - Найдено слово в списке слов
+19:49:26 - password_checker - WARNING - Вы ввели слишком слабый пароль
+19:49:29 - password_checker - INFO - Извлечение всех слов из пароля
+19:49:29 - password_checker - INFO - Пароль не верный
+19:49:29 - password_checker - ERROR - Пользователь трижды ввёл не правильный пароль!

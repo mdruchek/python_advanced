@@ -6,6 +6,9 @@
 в начале и в конце которой пишется "Enter measure_me" и "Leave measure_me".
 Сконфигурируйте логгер, запустите программу, соберите логи и посчитайте среднее время выполнения функции measure_me.
 """
+import datetime
+import itertools
+import json
 import logging
 import random
 from typing import List
@@ -59,8 +62,30 @@ def measure_me(nums: List[int]) -> List[List[int]]:
     return results
 
 
+def average_program_execution_time():
+    logs_filter = list(filter(lambda x: x["message"] == "Enter measure_me" or x["message"] == "Leave measure_me", logs))
+    duration = []
+    for i in range(1, len(logs_filter), 2):
+        a = datetime.datetime.strptime(logs_filter[i]["time"], "%H:%M:%S.%f") - datetime.datetime.strptime(logs_filter[i - 1]["time"], "%H:%M:%S.%f")
+        duration.append(a.microseconds / 1000)
+    return sum(duration) / len(duration)
+
+
 if __name__ == "__main__":
-    logging.basicConfig(level="DEBUG")
+    logging.basicConfig(
+        level="DEBUG",
+        filename='logs_measure_me',
+        filemode='w',
+        encoding="utf-8",
+        format='{"time": "%(asctime)s.%(msecs)03d", "level": "%(levelname)s", "message": "%(message)s"}',
+        datefmt="%H:%M:%S"
+    )
+
     for it in range(15):
-        data_line = get_data_line(10 ** 3)
+        data_line = get_data_line(10**3)
         measure_me(data_line)
+
+    with open("logs_measure_me", "r", encoding="utf-8") as log_file:
+        logs = [json.loads(dic) for dic in log_file.read().split("\n") if dic]
+    duration_avg = round(average_program_execution_time(), 3)
+    print(f"Среднее время выполнения: {duration_avg} миллисекунды")

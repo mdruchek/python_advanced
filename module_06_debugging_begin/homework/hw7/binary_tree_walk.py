@@ -18,9 +18,10 @@ def restore_tree(path_to_log_file: str) -> BinaryTreeNode:
 import itertools
 import logging
 import random
+import re
 from collections import deque
 from dataclasses import dataclass
-from typing import Optional
+from typing import Optional, Dict
 
 logger = logging.getLogger("tree_walk")
 
@@ -71,15 +72,34 @@ def get_tree(max_depth: int, level: int = 1) -> Optional[BinaryTreeNode]:
 
 
 def restore_tree(path_to_log_file: str) -> BinaryTreeNode:
-    pass
+    tree: Dict[int, BinaryTreeNode] = {}
+    with open(path_to_log_file, "r") as file:
+        for line in file.readlines():
+            val_node = list(map(int, re.findall(r"\d+", line)))
+            if "INFO" in line and val_node[0] not in tree:
+                if not tree:
+                    val_root = val_node[0]
+                tree[val_node[0]] = BinaryTreeNode(val=val_node[0])
+            elif "left" in line:
+                left = BinaryTreeNode(val_node[1])
+                tree[val_node[1]] = left
+                tree[val_node[0]].left = tree[val_node[1]]
+            elif "right" in line:
+                right = BinaryTreeNode(val_node[1])
+                tree[val_node[1]] = right
+                tree[val_node[0]].right = tree[val_node[1]]
+    return tree[val_root]
 
 
 if __name__ == "__main__":
+    log_file = "walk_log.txt"
     logging.basicConfig(
         level=logging.DEBUG,
         format="%(levelname)s:%(message)s",
-        filename="walk_log_4.txt",
+        filename=log_file,
+        filemode="w"
     )
 
     root = get_tree(7)
     walk(root)
+    restore_tree(log_file)

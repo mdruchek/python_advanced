@@ -8,9 +8,8 @@
 4. Сколько сообщений содержит слово dog.
 5. Какое слово чаще всего встречалось в сообщениях уровня WARNING.
 """
-# from datetime import datetime
-import datetime
 import json
+import datetime
 from typing import Dict
 from itertools import groupby
 
@@ -59,7 +58,8 @@ def task4() -> int:
     4. Сколько сообщений содержат слово dog.
     @return: количество сообщений
     """
-    pass
+    logs_filter = filter(lambda x: 'dog' in x["message"], logs)
+    return len(list(logs_filter))
 
 
 def task5() -> str:
@@ -67,7 +67,15 @@ def task5() -> str:
     5. Какое слово чаще всего встречалось в сообщениях уровня WARNING.
     @return: слово
     """
-    pass
+    words = {}
+    logs_filter = filter(lambda x: x["level"] == "WARNING", logs)
+    for dic in logs_filter:
+        for k, g in groupby(dic["message"].split(" ")):
+            try:
+                words[k] += len(list(g))
+            except KeyError:
+                words[k] = len(list(g))
+    return max(words, key=words.get)
 
 
 if __name__ == '__main__':
