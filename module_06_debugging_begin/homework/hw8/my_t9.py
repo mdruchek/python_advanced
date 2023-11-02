@@ -36,13 +36,10 @@ keyboard = {
 def my_t9(input_numbers: str) -> List[str]:
     with open("words", "r", encoding="utf-8") as file:
         dictionary = file.read()
-    letters = [keyboard[key] for key in input_numbers]
-    combinations = ["".join(list(combination)) for combination in itertools.product(*letters)]
-    _words = list(filter(lambda x: x is not None,
-                         [re.search(r"(\b" + comb + r")" + r"(\b)", dictionary)
-                          for comb
-                          in combinations]))
-    return list(map(lambda x: x.group(1), _words))
+    buttons_pattern = ''.join(f'[{keyboard[num]}]' for num in input_numbers)
+    pattern = fr'\b{buttons_pattern}\b'
+    matches = re.findall(pattern, dictionary, flags=re.IGNORECASE)
+    return list(set(matches))
 
 
 if __name__ == '__main__':
