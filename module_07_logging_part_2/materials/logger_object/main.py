@@ -5,6 +5,8 @@ from http_utils import get_ip_address
 from subprocess_utils import get_kernel_version
 
 
+root_loger = logging.getLogger()
+logging.basicConfig()
 logger_main = logging.getLogger('main')
 logger_utils = logging.getLogger('utils')
 logger_main.setLevel('INFO')
@@ -24,7 +26,7 @@ def get_system_info():
 
 if __name__ == '__main__':
     print(logger_main.parent)
-    print(logger_utils.parent)
-    print(logger_main)
-    print(logger_utils)
+    print(logger_utils.parent.handlers)
+    print(logger_main.handlers)
+    print(logger_utils.handlers)
     app.run(debug=True)
