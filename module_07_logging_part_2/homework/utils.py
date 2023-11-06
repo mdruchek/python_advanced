@@ -1,5 +1,13 @@
+import logging.config
+from logging.handlers import TimedRotatingFileHandler
 from typing import Union, Callable
 from operator import sub, mul, truediv, add
+
+from logging_config import dict_config
+
+
+utils_logger = logging.getLogger('utils')
+logging.config.dictConfig(dict_config)
 
 
 OPERATORS = {
@@ -18,11 +26,11 @@ def string_to_operator(value: str) -> Callable[[Numeric, Numeric], Numeric]:
     :param value: basic arithmetic function
     """
     if not isinstance(value, str):
-        print("wrong operator type", value)
+        utils_logger.error(f"wrong operator type {value}")
         raise ValueError("wrong operator type")
 
     if value not in OPERATORS:
-        print("wrong operator value", value)
+        utils_logger.error(f"wrong operator value {value}")
         raise ValueError("wrong operator value")
 
     return OPERATORS[value]

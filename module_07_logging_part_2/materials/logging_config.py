@@ -1,15 +1,24 @@
+import logging
+import sys
+
+
+class CustomStreamHandler(logging.StreamHandler):
+    def __int__(self, stream=sys.stderr):
+        super().__init__()
+        self.stream = stream
+
 
 dict_config = {
     'version': 1,
     'disable_existing_loggers': False,
     'formatters': {
         'base': {
-            'format': '%(name)s || %(levelname)s || %(message)s || %(module)s.%(funcName)s:%(lineno)d'
+            'format': '%(name)s || %(levelname)s || %(message)s || %(module)s.%(funcName)s:%(lineno)d || %(very)s'
         }
     },
     'handlers': {
         'console': {
-            'class': 'logging.StreamHandler',
+            '()': CustomStreamHandler,
             'level': 'DEBUG',
             'formatter': 'base'
         },

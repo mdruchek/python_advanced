@@ -32,7 +32,7 @@ sub_2 = logging.getLogger('sub_2')
 
 
 def main():
-    sub_1.info('Сообщение от sub_1_logger')
+    sub_1.info('Сообщение от sub_1_logger', extra={'very': 'much'})
 
 
 if __name__ == '__main__':
