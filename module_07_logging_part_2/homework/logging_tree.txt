@@ -1,19 +1,40 @@
 <--""
-   Level WARNING
+   Level DEBUG
+   Handler Stream (<_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>,)
+     Level WARNING
+     Formatter fmt='%(levelname)s - %(message)s' datefmt='%Y-%m-%dT%H:%M:%S%Z'
    |
    o   "app"
    |   Level DEBUG
    |   Propagate OFF
    |   Handler Stream <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
    |     Level DEBUG
+   |     Filter <logging_config.ASCIIFilter object at 0x000001454BE940D0>
    |     Formatter fmt='%(levelname)s | %(name)s | %(asctime)s | %(lineno)d | %(message)s' datefmt=None
    |   Handler <CustomFileHandler (DEBUG)>
    |     Level DEBUG
+   |     Filter <logging_config.ASCIIFilter object at 0x000001454BE940D0>
    |     Formatter fmt='%(levelname)s | %(name)s | %(asctime)s | %(lineno)d | %(message)s' datefmt=None
+   |   Handler HTTP POST to http://127.0.0.1:3000//log
+   |     Level DEBUG
+   |     Filter <logging_config.ASCIIFilter object at 0x000001454BE940D0>
+   |
+   o<--"appLogger"
+   |   Level DEBUG
+   |   Handler Stream (<_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>,)
+   |     Level WARNING
+   |     Formatter fmt='%(levelname)s - %(message)s' datefmt='%Y-%m-%dT%H:%M:%S%Z'
+   |   Handler File 'F:\\PycharmProjects\\python_advanced-master\\module_07_logging_part_2\\homework\\logfile.log'
+   |     Level DEBUG
+   |     Formatter fmt='%(asctime)s - %(name)s - %(levelname)s - %(message)s' datefmt='%Y-%m-%dT%H:%M:%S%Z'
    |
    o   "utils"
        Level INFO
        Propagate OFF
-       Handler TimedRotatingFile 'D:\\python\\python_advanced\\module_07_logging_part_2\\homework\\utils.log' when='H' interval=36000 backupCount=5
+       Handler TimedRotatingFile 'F:\\PycharmProjects\\python_advanced-master\\module_07_logging_part_2\\homework\\utils.log' when='H' interval=36000 backupCount=5
          Level INFO
+         Filter <logging_config.ASCIIFilter object at 0x000001454BE940D0>
          Formatter fmt='%(levelname)s | %(name)s | %(asctime)s | %(lineno)d | %(message)s' datefmt=None
+       Handler HTTP POST to http://127.0.0.1:3000//log
+         Level DEBUG
+         Filter <logging_config.ASCIIFilter object at 0x000001454BE940D0>

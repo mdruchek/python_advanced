@@ -1,5 +1,4 @@
 import logging.config
-from logging.handlers import TimedRotatingFileHandler
 from typing import Union, Callable
 from operator import sub, mul, truediv, add
 

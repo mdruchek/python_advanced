@@ -4,10 +4,14 @@ import sys
 import logging_tree
 
 from utils import string_to_operator
-from logging_config import dict_config
+from logging_config import dict_config, dict_config_from_ini
+
 
 app_logger = logging.getLogger('app')
 logging.config.dictConfig(dict_config)
+
+# applogger = logging.getLogger('appLogger')
+# logging.config.dictConfig(dict_config_from_ini)
 
 
 with open('logging_tree.txt', 'w') as file:
