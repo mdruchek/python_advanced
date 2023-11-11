@@ -22,7 +22,7 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/<path:directory>/<path:path>")
+@app.route("/static/<path:directory>/<path:path>")
 def send_static(directory, path):
     return send_from_directory(directory=static_directories[directory], path=path)
 
