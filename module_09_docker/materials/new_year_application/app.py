@@ -8,6 +8,8 @@ template_folder = os.path.join(root_dir, "templates")
 static_folder = root_dir
 
 app = Flask(__name__, template_folder=template_folder)
+HOST = '0.0.0.0'
+PORT = 5000
 
 
 @app.route("/")
@@ -21,4 +23,4 @@ def send_static(path):
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host=HOST, port=PORT)
