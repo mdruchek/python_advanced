@@ -24,7 +24,7 @@ def get_image(url: str, result_path: str) -> None:
 
 def load_images_sequential() -> None:
     start: float = time.time()
-    for i in range(10):
+    for i in range(100):
         get_image(URL, OUT_PATH.format(i))
     logger.info('Done in {:.4}'.format(time.time() - start))
 
@@ -32,7 +32,7 @@ def load_images_sequential() -> None:
 def load_images_multithreading() -> None:
     start: float = time.time()
     threads: List[threading.Thread] = []
-    for i in range(10):
+    for i in range(1000):
         thread = threading.Thread(target=get_image, args=(URL, OUT_PATH.format(i)))
         thread.start()
         threads.append(thread)
@@ -46,7 +46,7 @@ def load_images_multithreading() -> None:
 def load_images_multiprocessing() -> None:
     start: float = time.time()
     procs: List[multiprocessing.Process] = []
-    for i in range(10):
+    for i in range(1000):
         proc = multiprocessing.Process(
             target=get_image,
             args=(URL, OUT_PATH.format(i)),
@@ -63,4 +63,6 @@ def load_images_multiprocessing() -> None:
 if __name__ == '__main__':
     if not os.path.exists('./temp'):
         os.mkdir('./temp')
-    load_images_multiprocessing()
+    # load_images_sequential()
+    load_images_multithreading()
+    # load_images_multiprocessing()
