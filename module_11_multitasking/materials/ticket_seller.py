@@ -28,8 +28,8 @@ class Seller(threading.Thread):
                     break
                 self.tickets_sold += 1
                 TOTAL_TICKETS -= 1
-                logger.info(f'{self.getName()} sold one;  {TOTAL_TICKETS} left')
-        logger.info(f'Seller {self.getName()} sold {self.tickets_sold} tickets')
+                logger.info(f'{self.name} sold one;  {TOTAL_TICKETS} left')
+        logger.info(f'Seller {self.name} sold {self.tickets_sold} tickets')
 
     def random_sleep(self) -> None:
         time.sleep(random.randint(0, 1))
