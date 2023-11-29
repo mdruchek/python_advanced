@@ -29,7 +29,6 @@ def save_character(char_num: int) -> None:
     response: requests.Response = requests.get(f'https://swapi.dev/api/people/{char_num}/')
     if response.status_code != 200:
         return
-    print(response.json())
     saving_to_database(response.json())
 
 
@@ -46,25 +45,25 @@ def saving_to_database(data: dict):
     con.close()
 
 
-# def load_characters_sequential(chars_num: List) -> None:
-#     start: float = time.time()
-#     for char_num in chars_num:
-#         save_character(char_num)
-#     logger.info('The sequential download ended in {:.4}'.format(time.time() - start))
-#
-#
-# def load_characters_multithreading(chars_num: List) -> None:
-#     start: float = time.time()
-#     threads: List[threading.Thread] = []
-#     for char_num in chars_num:
-#         with semaphore:
-#             thread = threading.Thread(target=save_character, args=[char_num])
-#             thread.start()
-#             threads.append(thread)
-#
-#     for thread in threads:
-#         thread.join()
-#     logger.info('The sequential download ended in {:.4}'.format(time.time() - start))
+def load_characters_sequential(chars_num: List) -> None:
+    start: float = time.time()
+    for char_num in chars_num:
+        save_character(char_num)
+    logger.info('The sequential download ended in {:.4}'.format(time.time() - start))
+
+
+def load_characters_multithreading(chars_num: List) -> None:
+    start: float = time.time()
+    threads: List[threading.Thread] = []
+    for char_num in chars_num:
+        with semaphore:
+            thread = threading.Thread(target=save_character, args=[char_num])
+            thread.start()
+            threads.append(thread)
+
+    for thread in threads:
+        thread.join()
+    logger.info('The multithreading download ended in {:.4}'.format(time.time() - start))
 
 
 def load_characters_pool(chars_num: List) -> None:
@@ -84,7 +83,7 @@ def load_characters_threadpool(chars_num: List) -> None:
 if __name__ == '__main__':
     create_tables_database()
     characters_num = get_characters_num()
-    # load_characters_sequential(characters_num)
-    # load_characters_multithreading(characters_num)
+    load_characters_sequential(characters_num)
+    load_characters_multithreading(characters_num)
     load_characters_pool(characters_num)
     load_characters_threadpool(characters_num)

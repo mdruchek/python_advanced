@@ -1,3 +1,4 @@
+import threading
 from threading import Semaphore, Thread
 import time
 
@@ -22,9 +23,13 @@ def fun2():
 
 t1: Thread = Thread(target=fun1)
 t2: Thread = Thread(target=fun2)
+t1.daemon = True
+t2.daemon = True
 try:
     t1.start()
     t2.start()
+    while threading.active_count() > 0:
+        pass
 except KeyboardInterrupt:
     print('\nReceived keyboard interrupt, quitting threads.')
     exit(1)
