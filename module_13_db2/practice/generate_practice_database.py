@@ -1,4 +1,4 @@
-import datetime
+import datetime_example
 import random
 import sqlite3
 
@@ -40,8 +40,8 @@ CREATE TABLE `table_kotlin` (
 
 
 def practice_4_generate_data(c: sqlite3.Cursor) -> None:
-    date = datetime.datetime(year=1710, day=17, month=6)
-    end_date = datetime.datetime.now()
+    date = datetime_example.datetime_example(year=1710, day=17, month=6)
+    end_date = datetime.datetime_example.now()
 
     while date < end_date:
         wind_speed = max(1, int(random.gauss(12, 33)))
@@ -50,7 +50,7 @@ def practice_4_generate_data(c: sqlite3.Cursor) -> None:
             (date.isoformat(), wind_speed),
         )
 
-        date = date + datetime.timedelta(days=1)
+        date = date + datetime_example.timedelta(days=1)
 
 
 plactice_5_sql = """
@@ -71,9 +71,9 @@ def practice_5_generate_data(c: sqlite3.Cursor) -> None:
         "отнесли мешки на завод",
         "выпили кофе с Старбакс",
     ]
-    this_year = datetime.datetime.now().year
-    date_start = datetime.datetime(year=this_year - 1, month=1, day=1)
-    end_date = datetime.datetime(year=this_year, month=1, day=1)
+    this_year = datetime_example.datetime_example.now().year
+    date_start = datetime_example.datetime_example(year=this_year - 1, month=1, day=1)
+    end_date = datetime_example.datetime_example(year=this_year, month=1, day=1)
 
     current_date = date_start
 
@@ -87,7 +87,7 @@ def practice_5_generate_data(c: sqlite3.Cursor) -> None:
             current_actions.append((current_date.strftime("%Y-%m-%d"), action))
 
         cursor.executemany("""INSERT INTO `table_green_future`(date,action) VALUES (?, ?);""", current_actions)
-        current_date = current_date + datetime.timedelta(days=1)
+        current_date = current_date + datetime_example.timedelta(days=1)
 
 
 practice_6_sql = """
@@ -143,8 +143,8 @@ CREATE TABLE `table_russian_post` (
 
 
 def practice_7_generate_data(c: sqlite3.Cursor) -> None:
-    date = datetime.datetime(year=2020, day=1, month=1)
-    end_date = datetime.datetime.now()
+    date = datetime_example.datetime_example(year=2020, day=1, month=1)
+    end_date = datetime_example.datetime_example.now()
 
     while date <= end_date:
         number_of_delivers = random.randint(1, 10)
@@ -160,7 +160,7 @@ def practice_7_generate_data(c: sqlite3.Cursor) -> None:
         )
 
         diff_in_days = random.randint(1, 3)
-        date += datetime.timedelta(days=diff_in_days)
+        date += datetime_example.timedelta(days=diff_in_days)
 
 
 if __name__ == "__main__":
