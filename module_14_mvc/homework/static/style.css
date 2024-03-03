@@ -40,7 +40,7 @@ table.customTable thead {
     margin-bottom: 15px;
 }
 
-.form-style-10 h1 {
+.form-style-10 h2 {
     background: #2A88AD;
     padding: 20px 30px 15px 30px;
     margin: -30px -30px 30px -30px;
@@ -56,7 +56,7 @@ table.customTable thead {
     border: 1px solid #257C9E;
 }
 
-.form-style-10 h1 > span {
+.form-style-10 h2 > span {
     display: block;
     margin-top: 2px;
     font: 13px Arial, Helvetica, sans-serif;

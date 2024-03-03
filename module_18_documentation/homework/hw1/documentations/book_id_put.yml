@@ -1,0 +1,21 @@
+This is the endpoint for changing the book by ID.
+---
+tags:
+  - books
+parameters:
+  - in: path
+    name: book_id
+    required: true
+responses:
+  201:
+    description: The book has been changed
+    schema:
+      $ref: '#/components/schemas/Book'
+  404:
+    description: The book not found
+  400:
+    description: Data validation error
+    schema:
+      example:
+        title:
+          - Not a valid string

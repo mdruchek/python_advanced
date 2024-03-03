@@ -1,44 +1,51 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>
-        Books
-    </title>
-    <link rel="stylesheet" type="text/css" href="../static/style.css">
-    <link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
-</head>
-<body>
+{% extends "base.html" %}
 
-<h1>Books:</h1>
+{% block content %}
+
+<h2>Books:</h2>
 
 {% if books %}
+<form method="post">
+        <div class="section">Filter books:</div>
+        <div class="inner-wrap">
+                <label>Author: {{form.author_name}} </label>
+        </div>
+
+        <div class="button-section">
+            <input type="submit" value="Найти"/>
+        </div>
+    </form>
+<br>
 <table class="customTable">
     <thead>
     <tr>
         <th>ID</th>
         <th>Title</th>
         <th>Author</th>
+        <th>Number of views</th>
     </tr>
     </thead>
     <tbody>
     {% for book in books %}
-    <tr>
-        <td>
-            {{ book.id }}
-        </td>
-        <td>
-            {{ book.title }}
-        </td>
-        <td>
-            {{ book.author }}
-        </td>
-    </tr>
+        <tr>
+            <td>
+                {{ book.id }}
+            </td>
+            <td>
+                {{ book.title }}
+            </td>
+            <td>
+                {{ book.author }}
+            </td>
+            <td>
+                {{ book.number_views }}
+            </td>
+        </tr>
     {% endfor %}
     </tbody>
 </table>
 {% else %}
-<h2> Sorry, no books in DB.</h2>
+    <h2> Sorry, no books in DB.</h2>
 {% endif %}
 
-</body>
-</html>
+{% endblock %}

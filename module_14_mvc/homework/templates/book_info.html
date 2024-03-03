@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if book %}
+    <h2>Book id: {{book.id}}</h2>
+    <p>Author: {{book.author}}</p>
+    <p>Title: {{book.title}}</p>
+    <p>Number of views: {{book.number_views}}</p>
+{% else %}
+    <h2> Sorry, no book in DB.</h2>
+{% endif %}
+
+{% endblock %}

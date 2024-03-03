@@ -1,0 +1,109 @@
+{% extends "skeleton.html" %}
+{% block content %}
+
+<h1>Микросервисная архитектура</h1>
+
+<a href="http://127.0.0.1:8000/api/browse">http://127.0.0.1:8000/api/browse</a>
+
+<h2>API</h2>
+
+<h4>Пример 1</h4>
+<pre>curl -i -X POST \
+   -H "Content-Type: application/json; indent=4" \
+   -d '{
+    "jsonrpc": "2.0",
+    "method": "logic.and",
+    "params": {
+        "A": true,
+        "B": true
+    },
+    "id": "1"
+}' http://127.0.0.1:8000/api
+</pre>
+
+<h4>Пример 2</h4>
+<pre>curl -i -X POST
+    -H "Content-Type: application/json; indent=4" \
+    -d '{
+    "jsonrpc": "2.0",
+    "method": "calc.add",
+    "params": {
+      "a": 7.8,
+      "b": 5.3
+    },
+    "id": "1"
+}' http://localhost:5000/api
+</pre>
+
+<h3>Логические</h3>
+
+<ul>
+    <li>logic.and(A, B)</li>
+    <li>logic.not(A)</li>
+    <li>logic.or(A, B)</li>
+    <li>logic.xor(A, B)</li>
+</ul>
+
+<h3>Арифметические</h3>
+
+<ul>
+    <li>logic.add(A, B)</li>
+    <li>logic.sub(A)</li>
+    <li>logic.mul(A, B)</li>
+    <li>logic.truediv(A, B)</li>
+</ul>
+
+<h3>API</h3>
+<div class="btn-group">
+<div class="btn btn-outline-success" v-if="A" v-on:click="changeA">Истина</div>
+<div class="btn btn-outline-danger" v-else v-on:click="changeA">Ложь</div>
+<div class="btn btn-outline-secondary disabled">И</div>
+<div class="btn btn-outline-success" v-if="B" v-on:click="changeB">Истина</div>
+<div class="btn btn-outline-danger" v-else v-on:click="changeB">Ложь</div>
+<div class="btn btn-outline-secondary disabled">=</div>
+<div class="btn btn-success disabled" v-if="result">Истина</div>
+<div class="btn btn-danger disabled" v-else>Ложь</div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+var app = new Vue({
+    el: '#app',
+    data: {{ pagedata['data']|tojson|safe }},
+    methods: {
+        changeA: function() {
+            var vm = this;
+            vm.A = !vm.A;
+            vm.update();
+        },
+        changeB: function() {
+            var vm = this;
+            vm.B = !vm.B;
+            vm.update();
+        },
+        update: function() {
+            var vm = this;
+            axios.post(
+                '/api',
+                {
+                    "jsonrpc": "2.0",
+                    "method": 'logic.and',
+                    "params": {
+                        "A": vm.A,
+                        "B": vm.B
+                    },
+                    "id": 1
+                }
+            ).then(
+                function(response) {
+                    if ('result' in response.data) {
+                        vm.result = response.data['result'];
+                    }
+                }
+            );
+        }
+    }
+})
+</script>
+{% endblock %}

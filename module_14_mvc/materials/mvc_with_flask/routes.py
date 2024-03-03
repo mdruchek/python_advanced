@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 from typing import List
 
-from models import init_db, get_all_books, DATA
+from models import init_db, get_all_books, DATA, get_filter_books, get_total_number_books
 
 app: Flask = Flask(__name__)
 
@@ -34,12 +34,21 @@ def all_books() -> str:
     return render_template(
         'index.html',
         books=get_all_books(),
+        number=get_total_number_books()
     )
 
 
 @app.route('/books/form')
 def get_books_form() -> str:
     return render_template('add_book.html')
+
+
+@app.route('/books/<string:author>')
+def search_books(author: str):
+    return render_template(
+        'index.html',
+        books=get_filter_books(author)
+    )
 
 
 if __name__ == '__main__':

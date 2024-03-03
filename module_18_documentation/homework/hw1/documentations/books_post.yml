@@ -1,0 +1,20 @@
+This is an endpoint for book creation.
+---
+tags:
+  - books
+parameters:
+  - in: body
+    name: new book params
+    schema:
+      $ref: '#/components/schemas/Book'
+responses:
+  201:
+    description: The book has been created
+    schema:
+      $ref: '#/components/schemas/Book'
+  400:
+    description: Data validation error
+    schema:
+      example:
+        title:
+          - Not a valid string.

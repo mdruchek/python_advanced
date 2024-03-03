@@ -1,0 +1,15 @@
+This is an endpoint for obtaining the book by ID.
+---
+tags:
+  - books
+parameters:
+  - in: path
+    name: book_id
+    required: true
+responses:
+  200:
+    description: book data
+    schema:
+      $ref: '#/components/schemas/Book' 
+  404:
+    description: Book not found

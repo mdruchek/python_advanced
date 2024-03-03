@@ -10,10 +10,11 @@ DATA: List[dict] = [
 
 class Book:
 
-    def __init__(self, id: int, title: str, author: str) -> None:
+    def __init__(self, id: int, title: str, author: str, number_views: int) -> None:
         self.id: int = id
         self.title: str = title
         self.author: str = author
+        self.number_views: int = number_views
 
     def __getitem__(self, item: str) -> Any:
         return getattr(self, item)
@@ -36,14 +37,15 @@ def init_db(initial_records: List[dict]) -> None:
                 CREATE TABLE `table_books` (
                     id INTEGER PRIMARY KEY AUTOINCREMENT, 
                     title TEXT, 
-                    author TEXT, 
+                    author TEXT,
+                    number_views INT
                 )
                 """
             )
             cursor.executemany(
                 """
                 INSERT INTO `table_books`
-                (title, author) VALUES (?, ?)
+                (title, author, number_views) VALUES (?, ?, 0)
                 """,
                 [
                     (item['title'], item['author'])
@@ -60,4 +62,63 @@ def get_all_books() -> List[Book]:
             SELECT * from `table_books`
             """
         )
-        return [Book(*row) for row in cursor.fetchall()]
+        books_info = cursor.fetchall()
+        if books_info:
+            update_number_views_book(cursor, books_info)
+            return [Book(*row) for row in books_info]
+
+
+def get_books_by_author(author_name: str) -> List[Book]:
+    with sqlite3.connect('table_books.db') as conn:
+        cursor: sqlite3.Cursor = conn.cursor()
+        cursor.execute(
+            """
+            SELECT * from `table_books` WHERE `author` = ?
+            """,
+            (author_name,)
+        )
+        books_info = cursor.fetchall()
+        if books_info:
+            update_number_views_book(cursor, books_info)
+            return [Book(*row) for row in books_info]
+
+
+def added_book(title, author) -> None:
+    with sqlite3.connect('table_books.db') as conn:
+        cursor: sqlite3.Cursor = conn.cursor()
+        cursor.execute(
+            """
+            INSERT INTO `table_books`
+            (title, author, number_views)
+            VALUES
+            (?, ?, 0)
+            """,
+            (title, author)
+        )
+
+
+def get_book_info(book_id) -> Book:
+    with sqlite3.connect('table_books.db') as conn:
+        cursor: sqlite3.Cursor = conn.cursor()
+        cursor.execute(
+            """
+            SELECT * from `table_books` WHERE `id` = ?
+            """,
+            (book_id,)
+        )
+        book_info = cursor.fetchone()
+        if book_info:
+            update_number_views_book(cursor, [book_info])
+            return Book(*book_info)
+
+
+def update_number_views_book(cursor: sqlite3.Cursor, books_info: List[tuple]):
+    for book_info in books_info:
+        cursor.execute(
+            """
+            UPDATE `table_books`
+            SET `number_views` = ?
+            WHERE id = ?
+            """,
+            (book_info[3] + 1, book_info[0])
+        )

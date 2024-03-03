@@ -1,0 +1,21 @@
+{
+    "summary": "This is the endpoint for deleting an author with books by author ID.",
+    "tags": [
+        "authors"
+    ],
+    "parameters": [
+        {
+            "name": "auth_id",
+            "in": "path",
+            "required": "true"
+        }
+    ],
+    "responses": {
+        "204": {
+            "description": "The author and his books have been deleted."
+        },
+        "404": {
+            "description": "The author not found"
+        }
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "summary": "This is an endpoint for obtaining the authors list.",
+    "tags": [
+        "authors"
+    ],
+    "responses": {
+        "200": {
+            "description": "Authors data",
+            "schema": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/Author"
+                }
+            }
+        },
+        "404": {
+            "description": "Books not found"
+        }
+    }
+}

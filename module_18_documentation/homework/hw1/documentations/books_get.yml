@@ -1,0 +1,13 @@
+This is an endpoint for obtaining the books list.
+---
+tags:
+  - books
+responses:
+  200:
+    description: Books data
+    schema:
+      type: array
+      items:
+        $ref: '#/components/schemas/Book'
+  404:
+    description: Books not found

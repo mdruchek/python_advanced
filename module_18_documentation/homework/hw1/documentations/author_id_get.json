@@ -1,0 +1,27 @@
+{
+    "summary": "This is an endpoint for obtaining the author by ID.",
+    "tags": [
+        "authors"
+    ],
+    "parameters": [
+        {
+          "name": "auth_id",
+          "in": "path",
+          "required": "true"
+        }
+    ],
+    "responses": {
+        "200": {
+            "description": "Author data",
+            "schema": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/Book"
+                }
+            }
+        },
+        "404": {
+            "description": "Author not found"
+        }
+    }
+}

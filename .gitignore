@@ -14,7 +14,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+#lib/
 lib64/
 parts/
 sdist/
@@ -137,4 +137,8 @@ dmypy.json
 
 # the rest
 .swp
-venv3.11
+#venv3.12/
+venv3.12_linux/
+venv3.10/
+
+*.db
