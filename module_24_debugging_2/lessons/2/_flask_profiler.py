@@ -55,7 +55,7 @@ flask_profiler.init_app(app)
 class NewEncoder(json.JSONEncoder):
     def default(self, o):
         if isinstance(o, decimal.Decimal):
-            return str(o)
+            return int(o)
         return super(NewEncoder, self).default(o)
 
 
