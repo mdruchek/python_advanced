@@ -1,9 +1,9 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
+import uvicorn
 
 
-from database import engine, session
-import models
-import schemas
+from database import engine, async_session
+from crud import create_dish, get_dish_by_title, models, schemas
 
 
 app = FastAPI()
@@ -12,22 +12,22 @@ app = FastAPI()
 @app.on_event("startup")
 async def startup():
     async with engine.begin() as conn:
+        await conn.run_sync(models.Base.metadata.drop_all)
         await conn.run_sync(models.Base.metadata.create_all)
 
 
 @app.on_event("shutdown")
 async def shutdown():
-    await session.close()
     await engine.dispose()
 
 
 @app.post('/dishes', response_model=schemas.DishOut)
 async def dishes(dish: schemas.DishIn) -> models.Dish:
-    new_ingredients = [models.Ingredient(ingredient.dict()) for ingredient in dish.ingredients]
-    dish_dict = dish.dict()
-    dish_dict['ingredients'] = new_ingredients
-    new_dish = models.Dish(**dish_dict)
-    async with session.begin():
-        session.add(new_dish)
+    db_dish = get_dish_by_title(async_session, dish.title)
+    if db_dish is None:
+        raise HTTPException(status_code=400, detail="Блюдо с таким названием уже есть")
+    new_dish: models.Dish = await create_dish(async_session, dish)
     return new_dish
 
+if __name__ == '__main__':
+    uvicorn.run(app, host='0.0.0.0', port=8000)

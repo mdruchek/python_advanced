@@ -15,9 +15,6 @@ class DishOut(BaseDish):
     id: int
     ingredients: list['IngredientOut']
 
-    class Config:
-        orm_mode = True
-
 
 class BaseIngredient(BaseModel):
     title: str
@@ -29,6 +26,3 @@ class IngredientIn(BaseIngredient):
 
 class IngredientOut(BaseIngredient):
     id: int
-
-    class Config:
-        orm_mode = True
