@@ -4,7 +4,7 @@ from pydantic import BaseModel
 class BaseDish(BaseModel):
     title: str
     cooking_time: int
-    number_views: int
+    description: str
 
 
 class DishIn(BaseDish):
@@ -14,6 +14,13 @@ class DishIn(BaseDish):
 class DishOut(BaseDish):
     id: int
     ingredients: list['IngredientOut']
+    number_views: int
+
+
+class DishUpdate(BaseModel):
+    title: str = None
+    cooking_time: int = None
+    ingredients: list['IngredientIn']
 
 
 class BaseIngredient(BaseModel):

@@ -19,6 +19,7 @@ class Dish(Base):
     title: Mapped[str] = mapped_column(nullable=False)
     cooking_time: Mapped[int] = mapped_column(nullable=False)
     number_views: Mapped[int] = mapped_column(nullable=False, default=0)
+    description: Mapped[str] = mapped_column(nullable=False)
 
     ingredients: Mapped[list['Ingredient']] = relationship(
         secondary=dish_ingredient_table, back_populates='dishes'
