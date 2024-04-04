@@ -1,10 +1,13 @@
 from fastapi.testclient import TestClient
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from fastapi import Depends
+from sqlalchemy import create_engine, insert
+from sqlalchemy.orm import sessionmaker, Session
 from sqlalchemy.pool import StaticPool
 
 from ..database import Base
 from ..main import app, get_db
+
+from ..models import Dish, Ingredient
 
 SQLALCHEMY_DATABASE_URL = 'sqlite://'
 
@@ -33,14 +36,28 @@ client = TestClient(app)
 
 
 @app.on_event("startup")
-async def startup_event():
-    items["foo"] = {"name": "Fighters"}
-    items["bar"] = {"name": "Tenders"}
+def startup_event(session: Session = Depends(get_db)):
+    print(session)
+    ingredients = session.scalars(
+        insert(Ingredient).returning(Ingredient),
+        [
+            {'title': 'ingredient1'},
+            {'title': 'ingredient2'},
+            {'title': 'ingredient3'}
+        ]
+    )
+
+    session.execute(
+        insert(Dish),
+        [
+            {'title': 'dish1', 'cooking_time': 1, 'description': 'description dish1', 'ingredients': ingredients},
+        ]
+    )
 
 
-@app.get("/items/{item_id}")
-async def read_items(item_id: str):
-    return items[item_id]
+@app.on_event("shutdown")
+def shutdown():
+    engine.dispose()
 
 
 def test_create_dish():
