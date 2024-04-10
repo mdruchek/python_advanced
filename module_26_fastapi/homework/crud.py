@@ -9,31 +9,21 @@ import schemas
 from database import async_session
 
 
-async def create_dish(dish: schemas.DishIn):
-    async with async_session() as session:
-        new_ingredients = await get_ingredients(dish.ingredients)
-        dish_dict = dish.model_dump()
-        dish_dict['ingredients'] = new_ingredients
-        new_dish = models.Dish(**dish_dict)
-        session.add(new_dish)
-        await session.commit()
-        return new_dish
-
-
-async def get_ingredients(ingredients: list[schemas.IngredientIn]):
-    ingredients = [create_or_get_ingredient(ingredient) for ingredient in ingredients]
-    return await asyncio.gather(*ingredients)
-
-
-async def create_or_get_ingredient(ingredient_sch: schemas.IngredientIn):
-    async with async_session() as session:
+async def create_dish(dish: schemas.DishIn, session: AsyncSession):
+    dish_dict = dish.model_dump()
+    dish_dict['ingredients'] = []
+    for ingredient_sch in dish.ingredients:
         ingredient = await get_ingredient_by_title(session, ingredient_sch.title)
         if ingredient is None:
             ingredient = models.Ingredient(**ingredient_sch.model_dump())
             session.add(ingredient)
             await session.commit()
             await session.refresh(ingredient)
-        return ingredient
+        dish_dict['ingredients'].append(ingredient)
+    new_dish = models.Dish(**dish_dict)
+    session.add(new_dish)
+    await session.commit()
+    return new_dish
 
 
 async def get_ingredient_by_title(session: AsyncSession, title: str):
@@ -102,7 +92,6 @@ async def get_dishes(session: AsyncSession):
 
 async def del_dish(dish_id: int, session: AsyncSession):
     dish_to_delete = await get_dish_by_id(session, dish_id)
-    print('-----------------', dish_to_delete)
     if dish_to_delete is not None:
         await session.delete(dish_to_delete)
         await session.commit()

@@ -14,7 +14,7 @@ app = FastAPI()
 @app.on_event("startup")
 async def startup():
     async with engine.begin() as conn:
-        # await conn.run_sync(models.Base.metadata.drop_all)
+        await conn.run_sync(models.Base.metadata.drop_all)
         await conn.run_sync(models.Base.metadata.create_all)
 
 
@@ -32,11 +32,11 @@ def get_db():
 
 
 @app.post('/dishes', response_model=schemas.DishOutCreateDish)
-async def create_dish(dish: schemas.DishIn) -> models.Dish:
+async def create_dish(dish: schemas.DishIn, session: AsyncSession = Depends(get_db)) -> models.Dish:
     db_dish = await crud.get_dish_by_title(async_session, dish.title)
     if db_dish is not None:
         raise HTTPException(status_code=400, detail='Блюдо с таким названием уже есть')
-    new_dish: models.Dish = await crud.create_dish(dish)
+    new_dish: models.Dish = await crud.create_dish(dish, session)
     return new_dish
 
 
