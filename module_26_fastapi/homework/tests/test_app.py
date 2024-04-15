@@ -1,41 +1,49 @@
-import datetime
-from time import sleep
+import asyncio
+from typing import AsyncGenerator
 
+import pytest
+import pytest_asyncio
+
+from contextlib import asynccontextmanager
+from httpx import AsyncClient, ASGITransport
 from fastapi.testclient import TestClient
 from fastapi import Depends
-from sqlalchemy import create_engine, insert
-from sqlalchemy.orm import sessionmaker, Session
-from sqlalchemy.pool import StaticPool
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
+from sqlalchemy.orm import sessionmaker
 
 from ..database import Base
-from ..main import app, get_db
+from ..main import app, get_db, engine
+from .. import models
+from sqlalchemy.pool import NullPool
 
 
-SQLALCHEMY_DATABASE_URL = 'sqlite:///:memory:'
+# TEST_DATABASE_URL = 'sqlite+aiosqlite:///./tests/test.db'
+#
+# engine_test = create_async_engine(TEST_DATABASE_URL, echo=True, poolclass=NullPool)
+#
+# async_session_maker = async_sessionmaker(engine_test, expire_on_commit=False)
+#
+# print(Base.metadata)
 
-engine = create_engine(
-    SQLALCHEMY_DATABASE_URL,
-    connect_args={"check_same_thread": False},
-    poolclass=StaticPool,
-    echo=True
-)
-TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-Base.metadata.create_all(bind=engine)
-
-
-def override_get_db():
-    try:
-        db = TestingSessionLocal()
-        yield db
-    finally:
-        db.close()
+# @pytest_asyncio.fixture(autouse=True, scope='session')
+# async def prepare_database():
+#     async with engine.begin() as conn:
+#         await conn.run_sync(Base.metadata.create_all)
+#     yield
+    # async with engine.begin() as conn:
+    #     await conn.run_sync(Base.metadata.drop_all)
 
 
-app.dependency_overrides[get_db] = override_get_db
+# loop: asyncio.AbstractEventLoop
 
-client = TestClient(app)
+# app.dependency_overrides[get_db] = override_get_async_session
+
+# client = TestClient(app)
+
+# @pytest.fixture(scope="session")
+# async def ac() -> AsyncGenerator[AsyncClient, None]:
+#     async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
+#         yield ac
 
 
 # @app.on_event('startup')
@@ -59,28 +67,39 @@ client = TestClient(app)
 #     )
 #
 #
-# @app.on_event("shutdown")
-# def shutdown():
-#     Base.metadata.drop_all(engine)
-#     engine.dispose()
-#
-#
-def test_create_dish():
-    dish_dict = {
-        'title': 'dish2',
-        'cooking_time': 60,
-        'description': 'description2',
-        'ingredients': [
-            {
-                'title': 'ingredients11',
-            },
-            {
-                'title': 'ingredients21'
-            }
-        ]
-    }
 
-    response = client.post('/dishes/', json=dish_dict)
+# client = TestClient(app)
+
+# def test_create_dish():
+#     global loop
+#     dish_dict = {
+#         'title': 'dish2',
+#         'cooking_time': 60,
+#         'description': 'description2',
+#         'ingredients': [
+#             {
+#                 'title': 'ingredients11',
+#             }
+#         ]
+#     }
+
+    # async with engine.begin() as conn:
+    #     await conn.run_sync(Base.metadata.create_all)
+
+    # response = client.get('/dishes/')
+    #
+    # async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
+    #     response = await ac.post('/dishes/', json=dish_dict)
+    # print(response)
+
+    # async with engine.begin() as conn:
+    #     await conn.run_sync(Base.metadata.drop_all)
+
+    # response = await ac.post('/dishes', json=dish_dict)
+    # #
+    # print(response)
+    # print('--------')
+    # print(response.json())
 
     # assert response.status_code == 200
     # data: dict = response.json()
@@ -94,10 +113,13 @@ def test_create_dish():
     # assert data.get('ingredients') == [{'title': dish_dict['ingredients'][0]}, {'title': dish_dict['ingredients'][1]}]
 
 
-# def test_read_dishes():
-#     response = client.get(f'/dishes/')
-#     assert response.status_code == 200
-#     data = response.json()
+# async def test_read_dishes():
+    # async with engine.begin() as conn:
+    #     await conn.run_sync(Base.metadata.create_all)
+    # response = client.get('/dishes/')
+    # assert response.status_code == 200
+    # data = response.json()
+    # print(data)
 #     assert data == [
 #         {
 #             'id': 1,
@@ -125,7 +147,7 @@ def test_create_dish():
 #             ]
 #         }
 #     ]
-#
+#     pass
 #
 # def test_read_dish():
 #     response = client.get('/dishes/1')
@@ -202,3 +224,16 @@ def test_create_dish():
 #     assert data == {
 #         'message': 'Блюдо не найдено'
 #     }
+
+# @pytest.fixture(scope='session', autouse=True)
+# def event_loop(request):
+#     loop = asyncio.get_event_loop_policy().new_event_loop()
+#     yield loop
+#     loop.close()
+
+client = TestClient(app)
+
+def test_get_receipt():
+    response = client.get('/dishes/')
+    print(response.json())
+    assert response.status_code == 200

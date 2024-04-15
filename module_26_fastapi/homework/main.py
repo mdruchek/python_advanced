@@ -1,3 +1,5 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI, HTTPException, Depends
 import uvicorn
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
@@ -8,39 +10,39 @@ from crud import models, schemas
 import crud
 
 
-app = FastAPI()
-
-
-@app.on_event("startup")
-async def startup():
+@asynccontextmanager
+async def lifespan(app: FastAPI):
     async with engine.begin() as conn:
-        await conn.run_sync(models.Base.metadata.drop_all)
+        # await conn.run_sync(models.Base.metadata.drop_all)
         await conn.run_sync(models.Base.metadata.create_all)
+        yield
+        await engine.dispose()
+
+app = FastAPI(lifespan=lifespan)
 
 
-@app.on_event("shutdown")
-async def shutdown():
-    await engine.dispose()
 
-
-def get_db():
+async def get_db():
     db = async_session()
     try:
         yield db
     finally:
-        db.close()
+        await db.close()
 
 
-@app.post('/dishes', response_model=schemas.DishOutCreateDish)
+
+@app.post('/dishes/', response_model=schemas.DishOutCreateDish)
 async def create_dish(dish: schemas.DishIn, session: AsyncSession = Depends(get_db)) -> models.Dish:
-    db_dish = await crud.get_dish_by_title(async_session, dish.title)
+    print('_----------------------------------------')
+    print(models.Base.metadata.tables)
+    db_dish = await crud.get_dish_by_title(session, dish.title)
     if db_dish is not None:
         raise HTTPException(status_code=400, detail='Блюдо с таким названием уже есть')
     new_dish: models.Dish = await crud.create_dish(dish, session)
     return new_dish
 
 
-@app.get('/dishes', response_model=list[schemas.DishOutReadDishes], response_model_exclude={'title'})
+@app.get('/dishes/', response_model=list[schemas.DishOutReadDishes], response_model_exclude={'title'})
 async def read_dishes(session: AsyncSession = Depends(get_db)) -> list[models.Dish]:
     dishes = await crud.get_dishes(session)
     if not dishes:
@@ -70,6 +72,5 @@ async def delete_dish(dish_id, session: AsyncSession = Depends(get_db)):
         return {'message': f'Блюдо {dish_id} успешно удалено'}
     raise HTTPException(status_code=404, detail='Блюдо не найдено')
 
-
 if __name__ == '__main__':
-    uvicorn.run(app, host='0.0.0.0', port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000)

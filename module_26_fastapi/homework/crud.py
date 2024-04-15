@@ -6,7 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
 import models
 import schemas
-from database import async_session
+# from database import async_session
 
 
 async def create_dish(dish: schemas.DishIn, session: AsyncSession):
@@ -28,17 +28,16 @@ async def create_dish(dish: schemas.DishIn, session: AsyncSession):
 
 async def get_ingredient_by_title(session: AsyncSession, title: str):
     stmt = select(models.Ingredient).where(models.Ingredient.title == title)
-    ingredient = await session.scalars(stmt)
-    ingredient = ingredient.one_or_none()
+    ingredient = await session.execute(stmt)
+    ingredient = ingredient.scalars().one_or_none()
     return ingredient
 
 
-async def get_dish_by_title(async_session: async_sessionmaker[AsyncSession], title: str):
-    async with async_session() as session:
-        stmt = select(models.Dish).where(models.Dish.title == title).options(selectinload(models.Dish.ingredients))
-        dish = await session.scalars(stmt)
-        dish = dish.one_or_none()
-        return dish
+async def get_dish_by_title(session: AsyncSession, title: str):
+    stmt = select(models.Dish).where(models.Dish.title == title).options(selectinload(models.Dish.ingredients))
+    dish = await session.execute(stmt)
+    dish = dish.one_or_none()
+    return dish
 
 
 async def get_dish_by_id(session: AsyncSession, dish_id: int, adding_number_views: bool = False):
@@ -68,9 +67,13 @@ async def update_dish(dish: schemas.DishUpdate, dish_id: int, session: AsyncSess
 
     ingredients: list[schemas.IngredientIn] = dish.ingredients
     if ingredients is not None:
-        dish_to_update.ingredients = []
-        await session.commit()
-        dish_to_update.ingredients = await get_ingredients(ingredients)
+        ingredients_for_update = []
+        for ingredient in ingredients:
+            ingredient_for_update = await get_ingredient_by_title(session, ingredient.title)
+            if ingredient_for_update is None:
+                ingredient_for_update = models.Ingredient(**ingredient.model_dump())
+            ingredients_for_update.append(ingredient_for_update)
+        dish_to_update.ingredients = ingredients_for_update
 
     description = dish.description
     if description is not None:
