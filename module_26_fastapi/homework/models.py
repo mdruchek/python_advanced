@@ -7,14 +7,14 @@ from database import Base
 dish_ingredient_table = Table(
     'dish_ingredient_table',
     Base.metadata,
-    Column('Dish', ForeignKey('Dish.id'), primary_key=True),
-    Column('Ingredient', ForeignKey('Ingredient.id'), primary_key=True),
+    Column('dish', ForeignKey('dish.id'), primary_key=True),
+    Column('ingredient', ForeignKey('ingredient.id'), primary_key=True),
     extend_existing=True
 )
 
 
 class Dish(Base):
-    __tablename__ = 'Dish'
+    __tablename__ = 'dish'
     __table_args__ = {'extend_existing': True}
 
     id: Mapped[int] = mapped_column(primary_key=True)
@@ -24,7 +24,7 @@ class Dish(Base):
     description: Mapped[str] = mapped_column(nullable=False)
 
     ingredients: Mapped[list['Ingredient']] = relationship(
-        secondary=dish_ingredient_table, back_populates='dishes'
+        secondary=dish_ingredient_table
     )
 
     def __repr__(self) -> str:
@@ -32,7 +32,7 @@ class Dish(Base):
 
 
 class Ingredient(Base):
-    __tablename__ = 'Ingredient'
+    __tablename__ = 'ingredient'
     __table_args__ = {'extend_existing': True}
 
     id: Mapped[int] = mapped_column(primary_key=True)

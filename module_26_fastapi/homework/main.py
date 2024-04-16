@@ -30,11 +30,8 @@ async def get_db():
         await db.close()
 
 
-
 @app.post('/dishes/', response_model=schemas.DishOutCreateDish)
 async def create_dish(dish: schemas.DishIn, session: AsyncSession = Depends(get_db)) -> models.Dish:
-    print('_----------------------------------------')
-    print(models.Base.metadata.tables)
     db_dish = await crud.get_dish_by_title(session, dish.title)
     if db_dish is not None:
         raise HTTPException(status_code=400, detail='Блюдо с таким названием уже есть')
