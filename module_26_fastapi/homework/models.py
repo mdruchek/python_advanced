@@ -7,8 +7,8 @@ from database import Base
 dish_ingredient_table = Table(
     'dish_ingredient_table',
     Base.metadata,
-    Column('dish', ForeignKey('dish.id'), primary_key=True),
-    Column('ingredient', ForeignKey('ingredient.id'), primary_key=True),
+    Column('dish_id', ForeignKey('dish.id'), primary_key=True),
+    Column('ingredient_id', ForeignKey('ingredient.id'), primary_key=True),
     extend_existing=True
 )
 
@@ -23,9 +23,7 @@ class Dish(Base):
     number_views: Mapped[int] = mapped_column(nullable=False, default=0)
     description: Mapped[str] = mapped_column(nullable=False)
 
-    ingredients: Mapped[list['Ingredient']] = relationship(
-        secondary=dish_ingredient_table
-    )
+    ingredients = relationship('Ingredient', secondary=dish_ingredient_table, back_populates='dishes')
 
     def __repr__(self) -> str:
         return f'Рецепт {self.title}'
@@ -38,9 +36,7 @@ class Ingredient(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     title: Mapped[str] = mapped_column(nullable=False)
 
-    dishes: Mapped[list['Dish']] = relationship(
-        secondary=dish_ingredient_table, back_populates='ingredients'
-    )
+    dishes = relationship('Dish', secondary=dish_ingredient_table, back_populates='ingredients')
 
     def __repr__(self) -> str:
         return f'Ингредиент: {self.title}'
