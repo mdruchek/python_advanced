@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import Table, Column, ForeignKey
 
-from database import Base
+from .database import Base
 
 
 dish_ingredient_table = Table(

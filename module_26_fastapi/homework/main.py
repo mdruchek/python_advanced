@@ -5,9 +5,9 @@ import uvicorn
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
 
-from database import engine, async_session
-from crud import models, schemas
-import crud
+from .database import engine, async_session
+from .crud import models, schemas
+from . import crud
 
 
 @asynccontextmanager

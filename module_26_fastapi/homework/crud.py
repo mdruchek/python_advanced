@@ -4,8 +4,8 @@ from sqlalchemy import select, delete, desc
 from sqlalchemy.orm import selectinload
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
-import models
-import schemas
+from . import models
+from . import schemas
 # from database import async_session
 
 
