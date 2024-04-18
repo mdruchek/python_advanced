@@ -14,3 +14,4 @@ async_session = async_sessionmaker(engine, expire_on_commit=False, class_=AsyncS
 
 
 Base = declarative_base()
+metadata = MetaData()

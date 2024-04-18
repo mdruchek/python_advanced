@@ -1,13 +1,14 @@
+import sys
+
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, HTTPException, Depends
 import uvicorn
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
-
-from .database import engine, async_session
-from .crud import models, schemas
-from . import crud
+from database import engine, async_session
+from crud import models, schemas
+import crud
 
 
 @asynccontextmanager
@@ -17,9 +18,13 @@ async def lifespan(app: FastAPI):
         await conn.run_sync(models.Base.metadata.create_all)
         yield
         await engine.dispose()
+        # await conn.run_sync(models.Base.metadata.drop_all)
 
-app = FastAPI(lifespan=lifespan)
 
+
+app = FastAPI(
+    lifespan=lifespan
+)
 
 
 async def get_db():

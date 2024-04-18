@@ -4,9 +4,9 @@ from sqlalchemy import select, delete, desc
 from sqlalchemy.orm import selectinload
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
-from . import models
-from . import schemas
-# from database import async_session
+import models
+import schemas
+from database import async_session
 
 
 async def create_dish(dish: schemas.DishIn, session: AsyncSession):
