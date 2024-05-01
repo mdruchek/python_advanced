@@ -20,5 +20,5 @@ def hello_user(user: str):
     )
 
 
-if __name__ == '__main__':
-    APP.run(host=HOST, port=PORT)
+# if __name__ == '__main__':
+#     APP.run(host=HOST, port=PORT)

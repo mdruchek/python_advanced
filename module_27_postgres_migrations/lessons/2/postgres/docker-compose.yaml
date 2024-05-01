@@ -1,4 +1,4 @@
-version: '3.2'
+version: 'alpine3.19'
 services:
   postgres:
     image: postgres
@@ -7,5 +7,3 @@ services:
       - POSTGRES_PASSWORD=admin
     ports:
       - '5432:5432'
-    volumes:
-      - ./db/:/var/lib/postgresql/data

@@ -1,0 +1,35 @@
+services:
+#  web:
+#    container_name: web
+#    build: .
+#    ports:
+#      - 8000:8000
+##    networks:
+##      - network
+#    depends_on:
+#      - db
+#    command: gunicorn -w 1 -b 0.0.0.0:8000 app:app
+
+  db:
+    container_name: db
+    image: postgres
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - log_destination=stderr
+      - logging_collector=on
+      - log_directory=/var/lib/postgresql/logs
+    ports:
+      - 5432:5432
+    volumes:
+      - ./db/:/var/lib/postgresql/data
+      - ./logs:/var/lib/postgresql/logs
+#    networks:
+#      - network
+
+volumes:
+  db:
+  logs:
+
+#networks:
+#  network: {}

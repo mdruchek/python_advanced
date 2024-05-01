@@ -50,6 +50,7 @@ class User(Base):
 def before_request_func():
     Base.metadata.drop_all(engine)
     Base.metadata.create_all(engine)
+    Base.metadata.drop_all(engine)
 
     objects = [
         User(name='u1'),
