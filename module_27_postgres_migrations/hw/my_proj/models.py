@@ -27,7 +27,7 @@ class Coffee(Base):
     intensifier: Mapped[Optional[str100]]
     notes: Mapped[Optional[list[str]]] = mapped_column(ARRAY(String))
 
-    users: Mapped[list['User']] = relationship(back_populates='user')
+    # users: Mapped[list['User']] = relationship(back_populates='user')
 
 
 class User(Base):
@@ -39,4 +39,4 @@ class User(Base):
     address: Mapped[Optional[dict[str, str]]] = mapped_column(JSON)
     coffee_id: Mapped[Coffee] = mapped_column(ForeignKey('coffee.id'))
 
-    coffee: Mapped['Coffee'] = relationship(back_populates='users')
+    # coffee: Mapped['Coffee'] = relationship(back_populates='users')
