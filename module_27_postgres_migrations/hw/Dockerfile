@@ -1,5 +1,5 @@
 FROM python:3.10-alpine
 WORKDIR /code
-COPY requirements.txt requirements.txt
+COPY requirements.txt .
 RUN pip install -r requirements.txt
-COPY ../app.py .
+COPY ./my_proj ./my_proj

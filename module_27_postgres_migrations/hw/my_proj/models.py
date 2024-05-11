@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Any
 from typing_extensions import Annotated
 
 from sqlalchemy import String, Integer, Sequence, ARRAY, JSON, ForeignKey
@@ -21,22 +21,30 @@ class Base(DeclarativeBase):
 class Coffee(Base):
     __tablename__ = 'coffee'
 
-    id: Mapped[int] = mapped_column(Integer, Sequence('coffee_id_seq'), primary_key=True)
+    id: Mapped[int] = mapped_column(Integer, Sequence('coffee_id_seq'),  primary_key=True)
     title: Mapped[str200]
     origin: Mapped[Optional[str200]]
     intensifier: Mapped[Optional[str100]]
     notes: Mapped[Optional[list[str]]] = mapped_column(ARRAY(String))
 
-    # users: Mapped[list['User']] = relationship(back_populates='user')
+    users: Mapped[list['User']] = relationship(back_populates='coffee')
+
+    def to_json(self) -> dict[str, Any]:
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
 
 class User(Base):
     __tablename__ = 'users'
 
-    id: Mapped[int] = mapped_column(Integer, Sequence('user_id_seq'), primary_key=True)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name: Mapped[str50]
-    has_sale: Mapped[Optional[bool]]
+    surname: Mapped[Optional[str50]]
+    patronomic: Mapped[Optional[str50]]
+    has_sale: Mapped[Optional[bool]] = mapped_column(default=False)
     address: Mapped[Optional[dict[str, str]]] = mapped_column(JSON)
     coffee_id: Mapped[Coffee] = mapped_column(ForeignKey('coffee.id'))
 
-    # coffee: Mapped['Coffee'] = relationship(back_populates='users')
+    coffee: Mapped['Coffee'] = relationship(back_populates='users')
+
+    def to_json(self) -> dict[str, Any]:
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}

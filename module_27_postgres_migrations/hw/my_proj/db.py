@@ -11,7 +11,7 @@ from sqlalchemy.orm import sessionmaker
 from .models import Base, Coffee, User
 
 
-engine = create_engine(current_app.config['DATABASE'])
+engine = create_engine(current_app.config['DATABASE'], echo=True)
 Session = sessionmaker(bind=engine)
 
 
@@ -86,6 +86,7 @@ def init_db_command(fwd):
                     name=users_names.pop(),
                     has_sale=random.choice([True, False]),
                     address={
+                        'country': data['country'],
                         'state': data['state'],
                         'city': data['city'],
                         'street_name': data['street_name'],
