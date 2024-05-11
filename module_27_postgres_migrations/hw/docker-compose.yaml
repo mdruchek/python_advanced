@@ -6,16 +6,14 @@ services:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin
       - POSTGRES_DB=skillbox_db
-      - log_destination=stderr
-      - logging_collector=on
-      - log_directory=/var/lib/postgresql/logs
     ports:
       - 5432:5432
     volumes:
-      - ./db:/var/lib/postgresql/data
-      - ./logs:/var/lib/postgresql/logs
+      - ./db/:/var/lib/postgresql/data
+      - ./logs/:/var/log/postgresql
     networks:
       - network
+    command: 'postgres -c log_destination=stderr -c logging_collector=on -c log_directory=/var/log/postgresql'
 
   web:
     container_name: web
@@ -26,8 +24,6 @@ services:
       - network
     depends_on:
       - db
-#    command: flask --app my_proj run --debug -h 0.0.0.0 -p 8000
-    command: gunicorn -w 1 -b 0.0.0.0:8000 'my_proj:create_app()'
 
 volumes:
   db:
