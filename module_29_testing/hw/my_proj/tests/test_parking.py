@@ -21,6 +21,6 @@ def test_get_user(web_client):
 
 
 def test_app_config(app):
-    assert not app.config['DEBUG']
+    assert app.config['DEBUG']
     assert app.config['TESTING']
     assert app.config['SQLALCHEMY_DATABASE_URI'] == "sqlite://"

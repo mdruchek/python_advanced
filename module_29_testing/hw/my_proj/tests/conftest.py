@@ -4,7 +4,8 @@ from datetime import datetime, timedelta
 import pytest
 sys.path.append('../../hw')
 
-from my_proj.app import create_app, db as _db
+from my_proj.app import create_app
+from my_proj.app.database import db as _db
 from my_proj.app.models import Client, Parking, ClientParking
 
 
