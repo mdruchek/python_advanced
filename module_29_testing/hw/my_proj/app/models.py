@@ -79,10 +79,10 @@ class ClientParking(db.Model):
     )
 
     id: Mapped[int_pk]
-    client_id: Mapped[int_pk] = mapped_column(ForeignKey('client.id'))
-    parking_id: Mapped[int_pk] = mapped_column(ForeignKey('parking.id'))
-    time_in: Mapped[datetime]
-    time_out: Mapped[datetime]
+    client_id: Mapped[int] = mapped_column(ForeignKey('client.id'))
+    parking_id: Mapped[int] = mapped_column(ForeignKey('parking.id'))
+    time_in: Mapped[Optional[datetime]] = mapped_column(nullable=True)
+    time_out: Mapped[Optional[datetime]] = mapped_column(nullable=True)
 
     def __repr__(self):
         return f'Клиент {self.client_id} место {self.parking_id}'

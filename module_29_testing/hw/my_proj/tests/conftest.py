@@ -12,6 +12,7 @@ from my_proj.app.models import Client, Parking, ClientParking
 @pytest.fixture
 def app():
     _app = create_app()
+    _app.config['SQLALCHEMY_ECHO'] = True
     _app.config['TESTING'] = True
     _app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://'
 
@@ -19,7 +20,6 @@ def app():
         _db.create_all()
 
         client = Client(
-            id=1,
             name='test_name_client',
             surname='test_surname_client',
             credit_card='test_credit_card_client',
@@ -27,7 +27,6 @@ def app():
         )
 
         parking = Parking(
-            id=1,
             address='test_address_parking',
             opened=True,
             count_places=100,
@@ -35,7 +34,6 @@ def app():
         )
 
         client_parking = ClientParking(
-            id=1,
             client_id=1,
             parking_id=1,
             time_in=datetime.now(),
@@ -56,7 +54,7 @@ def app():
 @pytest.fixture
 def web_client(app):
     client = app.test_client()
-    yield client
+    return client
 
 
 @pytest.fixture
