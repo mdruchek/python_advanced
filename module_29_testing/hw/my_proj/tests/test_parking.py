@@ -3,10 +3,12 @@ import sys
 
 import pytest
 from sqlalchemy import select, func
+import factory
 
 sys.path.append('../../hw')
 
 from my_proj.app.models import Client, Parking, ClientParking
+from .factories import ClientFactory, ParkingFactory
 
 
 def test_app_config(app):
@@ -89,3 +91,17 @@ def test_leaving_parking_lot(web_client, db):
 
     resp = web_client.delete('/client_parking', json=client_parking_data)
     assert b'Credit card is not linked.' in resp.data
+
+
+def test_create_client_with_factory(web_client, db):
+    client: ClientFactory = factory.build(dict, FACTORY_CLASS=ClientFactory)
+    resp = web_client.post('/clients', json=client)
+    assert resp.status_code == 201
+    assert db.session.scalar(select(func.count(Client.id))) == 2
+
+
+def test_create_parking_with_factory(web_client, db):
+    parking: ParkingFactory = factory.build(dict, FACTORY_CLASS=ParkingFactory)
+    resp = web_client.post('/parkings', json=parking)
+    assert resp.status_code == 201
+    assert db.session.scalar(select(func.count(Parking.id))) == 2
