@@ -14,7 +14,7 @@ class ClientFactory(factory.alchemy.SQLAlchemyModelFactory):
     name = factory.Faker('first_name')
     surname = factory.Faker('last_name')
     car_number = factory.Faker('license_plate')
-    credit_card = factory.Faker('credit_card_full')
+    credit_card = factory.Faker('credit_card_number') if random.randint(0, 1) == 1 else None
 
 
 class ParkingFactory(factory.alchemy.SQLAlchemyModelFactory):
